@@ -27,7 +27,8 @@ async function Login(req:Request, res:Response)
 
 async function Register(req: Request, res: Response) 
 {
-	const { nome, sobrenome, endereco, email, telefone, cpf, senha, status } = req.body;
+	const { nome, sobrenome, endereco, email, telefone, cpf, senha} = req.body;
+	const serviçe = await serviçeFunctions.register(nome, sobrenome, endereco, email, telefone, cpf, senha)
 	return res.status(httpStatus.CREATED).send('resgister')
 } 
 export  const controllerFunction = 
