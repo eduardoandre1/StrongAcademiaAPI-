@@ -1,10 +1,12 @@
 import { controllerFunction } from './../controllers/controller';
 import { Router } from "express";
-const names = Router();
+import { Request , Response } from 'express';
+const Login = Router();
+Login.post('/login',controllerFunction.Login)
+Login.post('/register')
+Login.put('/confirm/:id')
+Login.get('/health',(req:Request,res:Response) => {return res.status(200).send("i'm fine ");})
 
-names.post('/names',controllerFunction.create)
-names.get('/names',controllerFunction.read)
-names.delete('/names/:name',controllerFunction.deleteController);
-names.put('/names',controllerFunction.update)
 
-export default names
+
+export default Login

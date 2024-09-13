@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
 import { Request , Response } from 'express';
 import serviçeFunctions from './../serviçes/serviçe';
-function controller(req: Request, res: Response)
+async function controller(req: Request, res: Response)
 {
 	//get the data by req 
 		//const {data} = req.body; // dados de entrada da função de vem em forma de um objeto
@@ -15,34 +15,23 @@ function controller(req: Request, res: Response)
 		//res.sendStatus(httpStatus.OK)
 	
 }
-async function create(req: Request, res: Response)
-{
-	const { name } = req.body
-	serviçeFunctions.create(name)
-	res.sendStatus(httpStatus.CREATED)
-}
-async function read(req: Request, res: Response)
-{
-	const namesList = await serviçeFunctions.read()
-	res.status(httpStatus.OK).send(namesList)
-}
-async function update(req: Request, res: Response)
-{
-	const {newName , oldName} = req.body
-	await serviçeFunctions.update(newName, oldName)
-	res.sendStatus(httpStatus.ACCEPTED)
 
-}
-async function deleteController(req: Request,res: Response)
+async function Login(req:Request, res:Response)
 {
-	const {name} = req.params
-	await serviçeFunctions.deleteService(name)
-	res.sendStatus(httpStatus.OK)
+	const {email , password} = req.body
+	
+	const service = await serviçeFunctions.Login(email, password)
+	
+	res.status(httpStatus.OK).send(service)
 }
+
+async function Register(req: Request, res: Response) 
+{
+	const { nome, sobrenome, endereco, email, telefone, cpf, senha, status } = req.body;
+	return res.status(httpStatus.CREATED).send('resgister')
+} 
 export  const controllerFunction = 
 {
-	create,
-	read,
-	update,
-	deleteController
+	Login,
+	Register
 }

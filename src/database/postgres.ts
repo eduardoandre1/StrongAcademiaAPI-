@@ -6,7 +6,7 @@ dotenv.config()
 const {Pool} = pg
 const config: ClientConfig = 
 {
-	connectionString: process.env.DATABASE_URL,
+	connectionString: process.env.DataBase,
 	ssl:process.env.NODE_ENV === "production"?true: false
 }
 export const DB = new Pool(config)

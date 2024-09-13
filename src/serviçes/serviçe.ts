@@ -26,12 +26,25 @@ async function deleteService(name: string): Promise<void>
 	if(existName.rowCount === 0) throw {type: 'notFound', message:"this name does not exist"}
 	repositoryFunctions.deleteDatabase(name)
 }
-
+async function register() {
+	 // get database user where cpf or email
+	 //if cpf or email exist throw {type: 'conflict', message "cpf or email already exists"}
+	 // create user 
+	 // send email
+	 // return true   
+}
+async function login(user,password)
+{
+	// get user from database 
+	
+}
 const serviçeFunctions = 
 {
 	create,
 	read,
 	update,
-	deleteService
+	deleteService,
+	login,
+	register
 }
 export default serviçeFunctions
