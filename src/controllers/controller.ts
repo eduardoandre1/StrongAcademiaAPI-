@@ -20,7 +20,7 @@ async function Login(req:Request, res:Response)
 {
 	const {email , password} = req.body
 	
-	const service = await serviçeFunctions.Login(email, password)
+	const service = await serviçeFunctions.login(email, password)
 	
 	res.status(httpStatus.OK).send(service)
 }
