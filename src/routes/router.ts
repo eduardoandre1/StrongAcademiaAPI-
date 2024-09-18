@@ -2,7 +2,7 @@ import input_validate from './../middlewares/input.validation';
 import { controllerFunction } from './../controllers/controller';
 import { Router } from "express";
 import { Request , Response } from 'express';
-import { loginSchema, registerSchema } from '@/schemas/register.schema';
+import { loginSchema, registerSchema } from './../schemas/register.schema';
 const Login = Router();
 Login.post('/login',input_validate(loginSchema),controllerFunction.Login)
 Login.post('/register',input_validate(registerSchema),controllerFunction.Register)
