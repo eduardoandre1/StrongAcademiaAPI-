@@ -18,8 +18,8 @@ async function controller(req: Request, res: Response)
 
 async function Login(req:Request, res:Response)
 {
-	const {email , password} = req.body	
-	const login  = await serviçeFunctions.login(email, password)
+	const {email , senha} = req.body	
+	const login  = await serviçeFunctions.login(email,senha)
 	res.status(httpStatus.OK).send(login)
 }
 
