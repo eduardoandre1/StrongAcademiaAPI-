@@ -1,12 +1,15 @@
 import repositoryFunctions from "./../repositories/repositorie";
 import bcrypt from 'bcrypt';
 
-async function register() {
-	 // get database user where cpf or email
-	 //if cpf or email exist throw {type: 'conflict', message "cpf or email already exists"}
-	 // create user 
+async function register(nome, sobrenome, endereco, email, telefone, cpf, senha) {
+	const findbyEmailOrCPF = await repositoryFunctions.FindbyEmailOrCPF(email,cpf)
+	if (findbyEmailOrCPF.rowCount > 0) throw {type: 'conflict' ,message:'email ou cpf já estão coadastrados no nosso banco de dados'}
+	const senhaCriptografada = bcrypt.hashSync(senha, 10)
+	const user = await repositoryFunctions.Register(nome, sobrenome,endereco,email,telefone,cpf,senhaCriptografada) 
+	console.log(user.rows[0])
+	// create user 
 	 // send email
-	 // return true   
+	return user.rows[0]   
 }
 async function login(email,password)
 {
@@ -15,7 +18,6 @@ async function login(email,password)
 	const serverPasswordEncripted = findEmail.rows[0].password
 	
 	if(bcrypt.compareSync(password, serverPasswordEncripted) === false) throw {type:"conflict",message:"password is incorrect"}
-	const user_id = findEmail.rows[0].id
 	return findEmail.rows[0] 
 	
 }

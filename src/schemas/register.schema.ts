@@ -6,8 +6,8 @@ export const registerSchema = Joi.object(
 		sobrenome:Joi.string().min(3).required(),
 		endereco:Joi.string().min(3).required(), 
 		email:Joi.string().email().required(), 
-		telefone:Joi.string().required(), 
-		cpf:Joi.string().required, 
+		telefone:Joi.string().min(9).required(), 
+		cpf:Joi.string().min(11).required(), 
 		senha:Joi.string().required()
 	})
 

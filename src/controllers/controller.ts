@@ -18,18 +18,16 @@ async function controller(req: Request, res: Response)
 
 async function Login(req:Request, res:Response)
 {
-	const {email , password} = req.body
-	
-	const service = await serviçeFunctions.login(email, password)
-	
-	res.status(httpStatus.OK).send(service)
+	const {email , password} = req.body	
+	const login  = await serviçeFunctions.login(email, password)
+	res.status(httpStatus.OK).send(login)
 }
 
 async function Register(req: Request, res: Response) 
 {
 	const { nome, sobrenome, endereco, email, telefone, cpf, senha} = req.body;
 	const serviçe = await serviçeFunctions.register(nome, sobrenome, endereco, email, telefone, cpf, senha)
-	return res.status(httpStatus.CREATED).send('resgister')
+	return res.status(httpStatus.CREATED).send(serviçe)
 } 
 export  const controllerFunction = 
 {
