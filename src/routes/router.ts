@@ -10,7 +10,7 @@ Login.put('/confirm/:id')//serve feita no email de confirmação
 Login.get('/professores',controllerFunction.findProfessores)
 Login.get('/estudantes',controllerFunction.findEstudantes)
 Login.post('/delete/professores',controllerFunction.deleteProfessores)
-Login.delete('/delete/estudantes',controllerFunction.deleteStudent)
+Login.post('/delete/estudantes',controllerFunction.deleteStudent)
 Login.get('/health',(req:Request,res:Response) => {return res.status(200).send("i'm fine ");})
 
 
