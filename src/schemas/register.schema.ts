@@ -8,7 +8,8 @@ export const registerSchema = Joi.object(
 		email:Joi.string().email().required(), 
 		telefone:Joi.string().min(9).required(), 
 		cpf:Joi.string().min(11).required(), 
-		senha:Joi.string().required()
+		senha:Joi.string().required(),
+		type: Joi.string().required()
 	})
 
 export const loginSchema = Joi.object(
