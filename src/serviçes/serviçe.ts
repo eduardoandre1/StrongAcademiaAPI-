@@ -1,11 +1,11 @@
 import repositoryFunctions from "./../repositories/repositorie";
 import bcrypt from 'bcrypt';
 
-async function register(nome, sobrenome, endereco, email, telefone, cpf, senha) {
+async function register(nome, sobrenome, endereco, email, telefone, cpf, senha, type) {
 	const findbyEmailOrCPF = await repositoryFunctions.FindbyEmailOrCPF(email,cpf)
 	if (findbyEmailOrCPF.rowCount > 0) throw {type: 'conflict' ,message:'email ou cpf já estão coadastrados no nosso banco de dados'}
 	const senhaCriptografada = bcrypt.hashSync(senha, 10)
-	const user = await repositoryFunctions.Register(nome, sobrenome,endereco,email,telefone,cpf,senhaCriptografada) 
+	const user = await repositoryFunctions.Register(nome, sobrenome,endereco,email,telefone,cpf,senhaCriptografada,type) 
 	console.log(user.rows[0])
 	// create user 
 	 // send email
