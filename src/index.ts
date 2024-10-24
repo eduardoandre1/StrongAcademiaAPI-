@@ -12,4 +12,4 @@ app.use(names)
 app.use(errorHandler)
 
 const port = process.env.PORT || 5000
-app.listen(port,()=>console.log(`api running in port:${port}`))
+app.listen(port,()=>console.log(`api running in http://localhost:${port}`))

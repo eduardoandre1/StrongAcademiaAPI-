@@ -20,7 +20,7 @@ async function login(email,password)
 	console.log(findEmail.rows[0])
 	bcrypt.compareSync(password, serverPasswordEncripted)
 	if(bcrypt.compareSync(password, serverPasswordEncripted) === false) throw {type:"conflict",message:"password is incorrect"}
-	return findEmail.rows[0].type 
+	return { type:findEmail.rows[0].type } 
 	
 }
 const serviçeFunctions = 

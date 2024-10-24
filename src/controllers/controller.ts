@@ -28,6 +28,10 @@ async function Register(req: Request, res: Response)
 	const { nome, sobrenome, endereco, email, telefone, cpf, senha} = req.body;
 	const serviçe = await serviçeFunctions.register(nome, sobrenome, endereco, email, telefone, cpf, senha)
 	return res.status(httpStatus.CREATED).send(serviçe)
+}
+async function getExercices(req: Request, res: Response)
+{
+	const serviçe = await serviçeFunctions
 } 
 export  const controllerFunction = 
 {
