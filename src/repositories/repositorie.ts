@@ -15,10 +15,32 @@ async function findbyEmail(email)
 	const user = await DB.query("SELECT * FROM usuarios WHERE email = $1 ",[email]);
 	return user
 }
+async function findEstudantes()
+{
+	const user = await DB.query("SELECT * FROM usuarios WHERE type = 'estudante'")
+	return user
+}
+async function findProfessores()
+{
+	const user = await DB.query("SELECT * FROM usuarios WHERE type = 'professor'")
+	return user
+}
+async function deleteProfessor(cpf)
+{
+	await DB.query("DELETE FROM usuarios WHERE cpf = $1",[cpf])
+}
+async function deleteEstudante(cpf)
+{
+	await DB.query("DELETE FROM usuarios WHERE cpf = $1",[cpf])
+}
 const repositoryFunctions = 
 {
 	Register,
 	FindbyEmailOrCPF,
-	findbyEmail
+	findbyEmail,
+	findEstudantes,
+	findProfessores,
+	deleteProfessor,
+	deleteEstudante
 }
 export default repositoryFunctions

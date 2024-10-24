@@ -32,9 +32,35 @@ async function Register(req: Request, res: Response)
 async function getExercices(req: Request, res: Response)
 {
 	const serviçe = await serviçeFunctions
+}
+async function findEstudantes(req: Request, res: Response)
+{
+	const serviçe = await serviçeFunctions.findEstudantes()
+	return res.status(httpStatus.OK).send(serviçe)
 } 
+async function findProfessores(req: Request, res: Response)
+{
+	const serviçe = await serviçeFunctions.findProfessores()
+	return res.status(httpStatus.OK).send(serviçe)
+}
+async function deleteProfessores(req: Request, res: Response)
+{
+	const {cpf} = req.body
+	const del = await serviçeFunctions.deleteProfessor(cpf)
+	return res.status(httpStatus.OK).send('deletado')
+}
+async function deleteStudent(req: Request, res: Response)
+{
+	const {cpf} = req.body
+	const del = await serviçeFunctions.deleteStudent(cpf)
+	return res.status(httpStatus.OK).send('deletado')
+}
 export  const controllerFunction = 
 {
 	Login,
-	Register
+	Register,
+	findEstudantes,
+	findProfessores,
+	deleteProfessores,
+	deleteStudent,
 }

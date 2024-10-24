@@ -23,9 +23,37 @@ async function login(email,password)
 	return { type:findEmail.rows[0].type } 
 	
 }
+async function findEstudantes()
+{
+	const estudantes = await repositoryFunctions.findEstudantes()
+	return estudantes.rows
+}
+async function findProfessores()
+{
+	const professores = await repositoryFunctions.findProfessores()
+	return professores.rows
+}
+async function deleteProfessor(cpf: string)
+{
+	const prof = await repositoryFunctions.FindbyEmailOrCPF('NOT',cpf)
+	if(prof.rowCount === 0) throw {type:"conflict",message:`este cpf: ${cpf} not found`}
+	const del = await repositoryFunctions.deleteProfessor(cpf)
+	return del
+}
+async function deleteStudent(cpf: string)
+{
+	const student = await repositoryFunctions.FindbyEmailOrCPF('NOTEmail',cpf)
+	if(student.rowCount === 0) throw {type:"conflict",message:'este aluno já não se encontra no banco de dados'}
+	const del = await repositoryFunctions.deleteEstudante(cpf)
+	return del
+}
 const serviçeFunctions = 
 {
 	login,
-	register
+	register,
+	findEstudantes,
+	findProfessores,
+	deleteProfessor,
+	deleteStudent
 }
 export default serviçeFunctions
